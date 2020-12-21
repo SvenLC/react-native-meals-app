@@ -10,11 +10,7 @@ import {
 export const MealItem = (props) => {
   return (
     <View style={styles.mealItem}>
-      <TouchableOpacity
-        onPress={() => {
-          props.onSelectMeal;
-        }}
-      >
+      <TouchableOpacity onPress={props.onSelectMeal}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground
