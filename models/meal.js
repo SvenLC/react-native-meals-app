@@ -1,7 +1,7 @@
 export class Meal {
   constructor(
     id,
-    categoryId,
+    categoryIds,
     title,
     affordability,
     complexity,
