@@ -15,7 +15,7 @@ export class Meal {
     isLactoseFree
   ) {
     this.id = id;
-    this.categoryId = categoryId;
+    this.categoryIds = categoryIds;
     this.title = title;
     this.affordability = affordability;
     this.complexity = complexity;
