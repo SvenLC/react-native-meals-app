@@ -5,7 +5,8 @@ import MealsNavigator from './navigation/MealsNavigator';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
-    'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'open-sans': require('./assets/fonts/OpenSans-Bold.ttf'),
   });
   if (!fontsLoaded) {
     return <AppLoading />;
