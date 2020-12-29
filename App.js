@@ -4,10 +4,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import MealsNavigator from './navigation/MealsNavigator';
-import mealsreducer from './store/reducers/meals';
+import mealsReducer from './store/reducers/meals';
 
 const rootReducer = combineReducers({
-  meals: mealsreducer,
+  meals: mealsReducer,
 });
 
 const store = createStore(rootReducer);

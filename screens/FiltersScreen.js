@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, Text, View, Switch, Platform } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Platform, StyleSheet, Switch, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useDispatch } from 'react-redux';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
+import { setFilters } from '../store/actions/meals';
 
 const FilterSwitch = (props) => {
   return (
     <View style={styles.filterContainer}>
-      <Text>Gluten-free</Text>
+      <Text>{props.label}</Text>
       <Switch
         trackColor={{ true: Colors.primaryColor }}
         thumbColor={Platform.OS === 'android' ? Colors.primaryColor : ''}
@@ -25,20 +27,21 @@ const FiltersScreen = (props) => {
   const [isLactoseFree, setisLactoseFree] = useState(false);
   const [isVegan, setisVegan] = useState(false);
   const [isVegetarian, setisVegetarian] = useState(false);
+  const dispatch = useDispatch();
 
   const saveFilters = useCallback(() => {
     const appliedFilters = {
       glutenFree: isGlutenFree,
       lactoseFree: isLactoseFree,
       vegan: isVegan,
-      isVegetarian: isVegetarian,
+      Vegetarian: isVegetarian,
     };
 
-    console.log(appliedFilters);
-  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+    dispatch(setFilters(appliedFilters));
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
   useEffect(() => {
-    props.navigation.setParams({ save: saveFilters });
+    navigation.setParams({ save: saveFilters });
   }, [saveFilters]);
   return (
     <View style={styles.screen}>
@@ -96,7 +99,6 @@ FiltersScreen.navigationOptions = (navData) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -108,10 +110,10 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     width: '80%',
-    marginVertical: 10,
+    marginVertical: 15,
   },
 });
 
